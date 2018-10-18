@@ -22,7 +22,7 @@ struct Player{
 
 int getHandValue(Card h[]);
 int highest(Card h[]);
-//void sortCards(Card * h[]);
+void sortCards(Card * h[]);
 bool checkRFlush(Card h[]);
 bool isRoyalty(Card a);
 bool checkFlush(Card h[]);
@@ -46,13 +46,13 @@ Card makeCard(char num, char suite);
 
 int main(){
   char buff[255];
-  FILE *fp= fopen("sampleinput.txt", "r"); //check syntax
-  while(fgets(buff, sizeof(buff), fp)){
+  FILE *fp= fopen("readin.txt", "r"); //check syntax
+  //while(fgets(buff, sizeof(buff), fp)){
     makePlayersHands(p1, p2, p3, fp);
     p1.handValue= getHandValue(p1.hand);
     p2.handValue= getHandValue(p2.hand);
     p3.handValue= getHandValue(p3.hand);
-  }
+ 
 //----
   if (p1.handValue > p3.handValue){
         if(p1.handValue > p2.handValue){
@@ -66,6 +66,7 @@ int main(){
 //------
   }else
       printf("Player 3 wins \n");
+//}
   fclose(fp);
 }
 
@@ -75,6 +76,7 @@ int main(){
 Card makeCard(char num, char suite){
   Card ret;
   int number;
+  char sui=sui;
   if(num=='T'){
       number=10;
     }else if(num=='J'){
@@ -88,7 +90,7 @@ Card makeCard(char num, char suite){
     }else{
         number=num - '0';
     }
-  ret.n=num;
+  ret.n=number;
   ret.s=suite;
   return ret;
 }
@@ -156,8 +158,6 @@ int highest(Card h[]){
           temp=h[j];
           h[j]=h[j+1];
           h[j+1]=temp;
-
-
       }
     }
 }*/
@@ -346,7 +346,10 @@ void makePlayersHands(struct Player p1, struct Player p2, struct Player p3, FILE
   char suite;
 
   fscanf(fp, "%s", p11);
-  suite= p11[1];
+printf("%s\n", p11);
+  suite= p11[1]; //segmentation fault
+printf("%s\n", suite);
+	
   num=p11[0];
 
   p1.hand[0]=makeCard(num, suite);
