@@ -1,21 +1,12 @@
-#include "poker.h"
+#include <stdio.h>
+#include <stdlib.h>
+typedef int bool;
+#define TRUE 1
+#define FALSE 0
+#include "Poker.h"
 
 
 
-
-
-typedef struct Cards{
-    int n;
-    char s;
-} Card;
-Card hand[7];
-
-
-typedef struct Players{
-  Card hand[7]; //makes an array of cards, check if it works
-  int count[15]; //gives the amount of times that a certain card value is seen in the hand
-  int handValue;
-}Player;
 Player p1, p2 ,p3;
 
 
@@ -337,7 +328,7 @@ void makePlayersHands(Player* p1, Player* p2, Player* p3, FILE *fp){ //  -------
   char suite;
 
   fscanf(fp, "%s", p11);
-  suite= p11[1]; //segmentation fault
+  suite= p11[1]; 
   num=p11[0];
 
   p1->hand[0]=makeCard(num, suite);
