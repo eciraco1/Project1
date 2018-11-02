@@ -6,3 +6,5 @@ Poker.o: Poker.c Poker.h
 clean:
     rm -rf *.o
     rm target_bin
+    
+
