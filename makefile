@@ -1,8 +1,8 @@
-all: Poker     
-	gcc Poker.o -o Poker
-Poker.o: 
-	gcc -I . -c Poker.c
+all: Poker.o 
+    gcc Poker.o -o poker
+Poker.o: Poker.c Poker.h
+    gcc -I . -c Poker.c
 
 clean:
-	rm -rf *.o
-	rm -rf Poker
+    rm -rf *.o
+    rm target_bin
